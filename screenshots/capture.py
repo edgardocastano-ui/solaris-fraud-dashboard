@@ -33,11 +33,6 @@ def set_scroll(page: Page, px: int, wait: int = 1000):
     page.wait_for_timeout(wait)
 
 
-def click_tab(page: Page, label: str, wait: int = 1800):
-    page.locator(f'button[role="tab"]:has-text("{label}")').first.click()
-    page.wait_for_timeout(wait)
-
-
 def click_tab(page: Page, label: str, wait: int = 1500):
     page.locator(f'button[role="tab"]:has-text("{label}")').first.click()
     page.wait_for_timeout(wait)
@@ -79,7 +74,10 @@ def run():
         save(page, "03_risk_distribution")
 
         # ── 04: Top 20 Anomalies (CRITICAL rows highlighted) ───────────────────
-        set_scroll(page, 960, wait=1000)
+        # Scroll to 1280 in two steps: prime the dataframe render first,
+        # then settle at final position with a long wait for layout stabilization.
+        set_scroll(page, 900, wait=1500)
+        set_scroll(page, 1280, wait=3000)
         save(page, "04_top_anomalies_critical_highlighted")
 
         # ── 05: Pattern Insights → BINs tab ───────────────────────────────────
