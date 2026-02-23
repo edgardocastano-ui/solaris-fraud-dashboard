@@ -15,12 +15,27 @@ random.seed(42)
 
 START_DATE = datetime(2026, 1, 20)
 END_DATE = datetime(2026, 2, 19)
-TARGET_ROWS = 650
+TARGET_ROWS = 900
+
+MONTHLY_PLANS = ["Monthly Basic", "Monthly Standard", "Monthly Pro"]
+ANNUAL_PLANS  = ["Annual Basic", "Annual Premium", "Annual Premium Plus"]
 
 CURRENCIES = {
-    "BR": {"currency": "BRL", "symbol": "R$", "monthly": 4.99, "annual": 49.99},
-    "MX": {"currency": "MXN", "symbol": "$", "monthly": 99.00, "annual": 990.00},
-    "CO": {"currency": "COP", "symbol": "$COL", "monthly": 19900.00, "annual": 199000.00},
+    "BR": {
+        "currency": "BRL", "symbol": "R$",
+        "monthly": [4.99, 9.99, 14.99],
+        "annual":  [29.99, 49.99, 69.99],
+    },
+    "MX": {
+        "currency": "MXN", "symbol": "$",
+        "monthly": [99.00, 199.00, 299.00],
+        "annual":  [599.00, 990.00, 1390.00],
+    },
+    "CO": {
+        "currency": "COP", "symbol": "$COL",
+        "monthly": [19900.00, 39900.00, 59900.00],
+        "annual":  [119900.00, 199000.00, 279000.00],
+    },
 }
 
 # BINs: first 6 digits of card
@@ -41,14 +56,9 @@ NORMAL_IPS = {
 FOREIGN_IPS = [f"5.188.{random.randint(0,255)}.{random.randint(0,255)}" for _ in range(30)]
 
 STATUSES = ["approved", "declined_fraud", "declined_insufficient_funds", "chargeback"]
-STATUS_WEIGHTS = [0.78, 0.12, 0.07, 0.03]
+STATUS_WEIGHTS = [0.85, 0.06, 0.08, 0.01]
 
 TIERS = ["monthly", "annual"]
-
-SUBSCRIPTION_PLANS = {
-    "monthly": "Solaris Monthly",
-    "annual": "Solaris Annual",
-}
 
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -68,9 +78,12 @@ def random_timestamp(start: datetime, end: datetime) -> datetime:
     return start + timedelta(seconds=seconds)
 
 
-def amount_for(tier: str, country: str) -> float:
+def amount_for(tier: str, country: str, plan: str) -> float:
     cfg = CURRENCIES[country]
-    return cfg["monthly"] if tier == "monthly" else cfg["annual"]
+    prices = cfg["monthly"] if tier == "monthly" else cfg["annual"]
+    plans  = MONTHLY_PLANS   if tier == "monthly" else ANNUAL_PLANS
+    idx = plans.index(plan) if plan in plans else 0
+    return prices[idx]
 
 
 def make_transaction(
@@ -84,15 +97,18 @@ def make_transaction(
     last4: str,
     email: str,
     bin_country: Optional[str] = None,
+    plan: Optional[str] = None,
 ) -> dict:
+    if plan is None:
+        plan = random.choice(MONTHLY_PLANS if tier == "monthly" else ANNUAL_PLANS)
     cfg = CURRENCIES[country]
     return {
         "transaction_id": f"txn_{txn_id:05d}",
         "timestamp": timestamp.isoformat(),
         "customer_email": email,
         "subscription_tier": tier,
-        "subscription_plan": SUBSCRIPTION_PLANS[tier],
-        "amount": amount_for(tier, country),
+        "subscription_plan": plan,
+        "amount": amount_for(tier, country, plan),
         "currency": cfg["currency"],
         "country": country,
         "ip_address": ip,
@@ -116,7 +132,7 @@ def inject_card_testing(txn_id_start: int, rows: List[dict]) -> int:
             ts = base_ts + timedelta(minutes=random.randint(0, 110))
             status = random.choices(
                 ["approved", "declined_fraud", "declined_insufficient_funds"],
-                weights=[0.2, 0.5, 0.3],
+                weights=[0.3, 0.4, 0.3],
             )[0]
             rows.append(make_transaction(
                 txn_id, ts, country, "monthly", status, ip,
@@ -163,10 +179,11 @@ def inject_rapid_upgrades(txn_id_start: int, rows: List[dict]) -> int:
             txn_id, base_ts, country, "monthly", "approved", ip, card_bin, last4, email,
         ))
         txn_id += 1
-        # Annual upgrade within 2-5h
+        # Annual upgrade within 2-5h — always to Annual Premium (maximize charge)
         upgrade_ts = base_ts + timedelta(hours=random.randint(1, 5))
         rows.append(make_transaction(
             txn_id, upgrade_ts, country, "annual", "approved", ip, card_bin, last4, email,
+            plan="Annual Premium",
         ))
         txn_id += 1
     return txn_id
@@ -185,7 +202,9 @@ def inject_repeated_failures(txn_id_start: int, rows: List[dict]) -> int:
         num_declines = random.randint(3, 5)
         for j in range(num_declines):
             ts = base_ts + timedelta(minutes=j * 20)
-            status = random.choice(["declined_fraud", "declined_insufficient_funds"])
+            status = random.choices(
+                ["declined_fraud", "declined_insufficient_funds"], weights=[0.4, 0.6]
+            )[0]
             rows.append(make_transaction(
                 txn_id, ts, country, "monthly", status, ip, card_bin, last4, email,
             ))
@@ -262,7 +281,7 @@ def inject_concentrated_attacks(txn_id_start: int, rows: List[dict]) -> int:
             ts = base_ts + timedelta(minutes=random.randint(0, 300))
             status = random.choices(
                 ["approved", "declined_fraud", "declined_insufficient_funds"],
-                weights=[0.25, 0.45, 0.30],
+                weights=[0.30, 0.40, 0.30],
             )[0]
             rows.append(make_transaction(
                 txn_id, ts, country, "monthly", status, ip,
