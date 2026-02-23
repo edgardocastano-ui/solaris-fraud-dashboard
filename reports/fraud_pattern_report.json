@@ -1,0 +1,415 @@
+{
+  "meta": {
+    "generated_at": "2026-02-23T11:30:21.992273",
+    "total_transactions": 650,
+    "date_range": {
+      "from": "2026-01-20 00:47:46",
+      "to": "2026-02-18 21:49:07"
+    }
+  },
+  "summary": {
+    "total_transactions": 650,
+    "critical_count": 10,
+    "high_count": 32,
+    "medium_count": 101,
+    "low_count": 507,
+    "fraud_rate_pct": 22.15,
+    "chargeback_count": 28,
+    "avg_risk_score": 9.7
+  },
+  "top_bins": [
+    {
+      "card_bin": 999004,
+      "total_txns": 18,
+      "avg_risk_score": 48.3,
+      "declines": 9,
+      "chargebacks": 0,
+      "approvals": 9,
+      "decline_rate_pct": 50.0
+    },
+    {
+      "card_bin": 999003,
+      "total_txns": 14,
+      "avg_risk_score": 46.4,
+      "declines": 12,
+      "chargebacks": 0,
+      "approvals": 2,
+      "decline_rate_pct": 85.7
+    },
+    {
+      "card_bin": 999002,
+      "total_txns": 15,
+      "avg_risk_score": 29.0,
+      "declines": 7,
+      "chargebacks": 7,
+      "approvals": 1,
+      "decline_rate_pct": 46.7
+    },
+    {
+      "card_bin": 999001,
+      "total_txns": 24,
+      "avg_risk_score": 12.5,
+      "declines": 9,
+      "chargebacks": 8,
+      "approvals": 7,
+      "decline_rate_pct": 37.5
+    },
+    {
+      "card_bin": 424242,
+      "total_txns": 75,
+      "avg_risk_score": 8.0,
+      "declines": 15,
+      "chargebacks": 1,
+      "approvals": 59,
+      "decline_rate_pct": 20.0
+    },
+    {
+      "card_bin": 438600,
+      "total_txns": 75,
+      "avg_risk_score": 8.0,
+      "declines": 19,
+      "chargebacks": 0,
+      "approvals": 56,
+      "decline_rate_pct": 25.3
+    },
+    {
+      "card_bin": 451200,
+      "total_txns": 71,
+      "avg_risk_score": 8.0,
+      "declines": 25,
+      "chargebacks": 2,
+      "approvals": 44,
+      "decline_rate_pct": 35.2
+    },
+    {
+      "card_bin": 531313,
+      "total_txns": 71,
+      "avg_risk_score": 7.2,
+      "declines": 18,
+      "chargebacks": 2,
+      "approvals": 51,
+      "decline_rate_pct": 25.4
+    },
+    {
+      "card_bin": 411111,
+      "total_txns": 82,
+      "avg_risk_score": 7.1,
+      "declines": 30,
+      "chargebacks": 4,
+      "approvals": 48,
+      "decline_rate_pct": 36.6
+    },
+    {
+      "card_bin": 650000,
+      "total_txns": 73,
+      "avg_risk_score": 7.0,
+      "declines": 19,
+      "chargebacks": 2,
+      "approvals": 52,
+      "decline_rate_pct": 26.0
+    }
+  ],
+  "top_ips_card_testing": [
+    {
+      "ip_address": "185.220.101.112",
+      "unique_cards": 15,
+      "unique_bins": 6,
+      "total_txns": 15,
+      "avg_risk_score": 59.0,
+      "declines": 10,
+      "is_known_fraud_ip": true
+    },
+    {
+      "ip_address": "185.220.101.156",
+      "unique_cards": 13,
+      "unique_bins": 6,
+      "total_txns": 13,
+      "avg_risk_score": 41.5,
+      "declines": 8,
+      "is_known_fraud_ip": true
+    },
+    {
+      "ip_address": "185.220.101.47",
+      "unique_cards": 12,
+      "unique_bins": 6,
+      "total_txns": 12,
+      "avg_risk_score": 40.8,
+      "declines": 8,
+      "is_known_fraud_ip": true
+    },
+    {
+      "ip_address": "185.220.101.88",
+      "unique_cards": 12,
+      "unique_bins": 5,
+      "total_txns": 12,
+      "avg_risk_score": 54.6,
+      "declines": 9,
+      "is_known_fraud_ip": true
+    },
+    {
+      "ip_address": "185.220.101.200",
+      "unique_cards": 7,
+      "unique_bins": 5,
+      "total_txns": 7,
+      "avg_risk_score": 42.9,
+      "declines": 6,
+      "is_known_fraud_ip": true
+    },
+    {
+      "ip_address": "185.220.101.34",
+      "unique_cards": 7,
+      "unique_bins": 5,
+      "total_txns": 7,
+      "avg_risk_score": 35.0,
+      "declines": 5,
+      "is_known_fraud_ip": true
+    },
+    {
+      "ip_address": "187.172.52.47",
+      "unique_cards": 7,
+      "unique_bins": 5,
+      "total_txns": 9,
+      "avg_risk_score": 13.3,
+      "declines": 3,
+      "is_known_fraud_ip": false
+    },
+    {
+      "ip_address": "187.112.166.28",
+      "unique_cards": 6,
+      "unique_bins": 6,
+      "total_txns": 6,
+      "avg_risk_score": 0.0,
+      "declines": 3,
+      "is_known_fraud_ip": false
+    },
+    {
+      "ip_address": "187.150.222.80",
+      "unique_cards": 6,
+      "unique_bins": 6,
+      "total_txns": 6,
+      "avg_risk_score": 0.0,
+      "declines": 1,
+      "is_known_fraud_ip": false
+    },
+    {
+      "ip_address": "187.239.27.50",
+      "unique_cards": 6,
+      "unique_bins": 3,
+      "total_txns": 6,
+      "avg_risk_score": 0.0,
+      "declines": 2,
+      "is_known_fraud_ip": false
+    },
+    {
+      "ip_address": "187.7.47.121",
+      "unique_cards": 6,
+      "unique_bins": 4,
+      "total_txns": 11,
+      "avg_risk_score": 13.6,
+      "declines": 7,
+      "is_known_fraud_ip": false
+    },
+    {
+      "ip_address": "189.35.142.179",
+      "unique_cards": 6,
+      "unique_bins": 5,
+      "total_txns": 6,
+      "avg_risk_score": 0.0,
+      "declines": 0,
+      "is_known_fraud_ip": false
+    },
+    {
+      "ip_address": "187.107.136.36",
+      "unique_cards": 5,
+      "unique_bins": 4,
+      "total_txns": 5,
+      "avg_risk_score": 0.0,
+      "declines": 2,
+      "is_known_fraud_ip": false
+    },
+    {
+      "ip_address": "187.108.161.108",
+      "unique_cards": 5,
+      "unique_bins": 4,
+      "total_txns": 5,
+      "avg_risk_score": 0.0,
+      "declines": 1,
+      "is_known_fraud_ip": false
+    },
+    {
+      "ip_address": "187.125.114.71",
+      "unique_cards": 5,
+      "unique_bins": 5,
+      "total_txns": 5,
+      "avg_risk_score": 5.0,
+      "declines": 1,
+      "is_known_fraud_ip": false
+    }
+  ],
+  "time_patterns": [
+    {
+      "hour": 0,
+      "count": 28,
+      "avg_risk": 8.0,
+      "critical_count": 0
+    },
+    {
+      "hour": 1,
+      "count": 31,
+      "avg_risk": 7.7,
+      "critical_count": 0
+    },
+    {
+      "hour": 2,
+      "count": 25,
+      "avg_risk": 13.0,
+      "critical_count": 0
+    },
+    {
+      "hour": 3,
+      "count": 21,
+      "avg_risk": 5.2,
+      "critical_count": 0
+    },
+    {
+      "hour": 4,
+      "count": 24,
+      "avg_risk": 5.6,
+      "critical_count": 0
+    },
+    {
+      "hour": 5,
+      "count": 24,
+      "avg_risk": 11.0,
+      "critical_count": 0
+    },
+    {
+      "hour": 6,
+      "count": 38,
+      "avg_risk": 6.4,
+      "critical_count": 0
+    },
+    {
+      "hour": 7,
+      "count": 32,
+      "avg_risk": 14.8,
+      "critical_count": 0
+    },
+    {
+      "hour": 8,
+      "count": 23,
+      "avg_risk": 10.0,
+      "critical_count": 0
+    },
+    {
+      "hour": 9,
+      "count": 26,
+      "avg_risk": 12.5,
+      "critical_count": 0
+    },
+    {
+      "hour": 10,
+      "count": 36,
+      "avg_risk": 9.7,
+      "critical_count": 0
+    },
+    {
+      "hour": 11,
+      "count": 26,
+      "avg_risk": 5.2,
+      "critical_count": 0
+    },
+    {
+      "hour": 12,
+      "count": 30,
+      "avg_risk": 5.7,
+      "critical_count": 0
+    },
+    {
+      "hour": 13,
+      "count": 26,
+      "avg_risk": 7.5,
+      "critical_count": 0
+    },
+    {
+      "hour": 14,
+      "count": 13,
+      "avg_risk": 11.2,
+      "critical_count": 0
+    },
+    {
+      "hour": 15,
+      "count": 27,
+      "avg_risk": 9.6,
+      "critical_count": 0
+    },
+    {
+      "hour": 16,
+      "count": 26,
+      "avg_risk": 8.8,
+      "critical_count": 0
+    },
+    {
+      "hour": 17,
+      "count": 13,
+      "avg_risk": 7.3,
+      "critical_count": 0
+    },
+    {
+      "hour": 18,
+      "count": 30,
+      "avg_risk": 7.5,
+      "critical_count": 0
+    },
+    {
+      "hour": 19,
+      "count": 34,
+      "avg_risk": 16.0,
+      "critical_count": 1
+    },
+    {
+      "hour": 20,
+      "count": 40,
+      "avg_risk": 13.4,
+      "critical_count": 3
+    },
+    {
+      "hour": 21,
+      "count": 31,
+      "avg_risk": 11.3,
+      "critical_count": 3
+    },
+    {
+      "hour": 22,
+      "count": 22,
+      "avg_risk": 15.0,
+      "critical_count": 3
+    },
+    {
+      "hour": 23,
+      "count": 24,
+      "avg_risk": 6.2,
+      "critical_count": 0
+    }
+  ],
+  "geo_anomalies": [
+    {
+      "country": "BR",
+      "bin_country": "BR",
+      "count": 39,
+      "avg_risk": 37.4
+    },
+    {
+      "country": "MX",
+      "bin_country": "MX",
+      "count": 30,
+      "avg_risk": 46.2
+    },
+    {
+      "country": "CO",
+      "bin_country": "CO",
+      "count": 22,
+      "avg_risk": 35.0
+    }
+  ]
+}
